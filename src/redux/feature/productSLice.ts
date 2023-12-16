@@ -21,13 +21,15 @@ type PRODUCT = {
 };
 
 type URLPARAM = {
-  limit: Number;
-  skip: Number;
+  limit: number;
+  skip: number;
 };
 
 export const fetchingProducts = createAsyncThunk(
   "products/apiproduct",
   async (urlParam: URLPARAM, { rejectWithValue }) => {
+    console.log(urlParam, "urlparam");
+
     const response = await axios
       .get(
         `https://dummyjson.com/products?limit=${urlParam.limit}&skip=${urlParam.skip}`
@@ -45,21 +47,7 @@ export const fetchingProducts = createAsyncThunk(
 );
 
 const initialState: INITIALSTATE = {
-  product: [
-    {
-      id: 0,
-      title: "string",
-      description: "string",
-      price: 0,
-      discountPercentage: 0,
-      rating: 0,
-      stock: 0,
-      brand: "string",
-      category: "string",
-      thumbnail: "string",
-      images: ["", ""],
-    },
-  ],
+  product: [],
   isLoading: false,
   isError: null,
 };
