@@ -4,10 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import { Pagination } from "@mui/material";
 
-type URLPARAM = {
-  limit: number;
-  skip: number;
-};
+
 
 type PRODUCT = {
   id: number;
@@ -27,12 +24,16 @@ const Product = () => {
   // @ts-ignore
   const [page, setPage] = useState<number>(1);
   console.log(page);
-
-  const [urlParam, setUrlParam] = useState<URLPARAM>({
+// using ref  
+const urlParam2 = useRef(
+  {
     limit: 10,
     skip: 0,
-  });
-  console.log(urlParam, "urlparam in product");
+  }
+)
+
+  
+  console.log(urlParam2, "urlparam in product");
 
   // using useRef for ristrict the useeffect only render one time
   const load = useRef(false);
@@ -45,10 +46,10 @@ const Product = () => {
   useEffect(() => {
     if (!load.current) {
       console.log(load);
-      dispatch(fetchingProducts(urlParam));
+      dispatch(fetchingProducts(urlParam2.current));
     }
 
-    // console.log(product.slice(page * urlParam.limit - urlParam.limit,page * urlParam.limit));
+    
 
     return () => {
       load.current = true;
@@ -58,14 +59,17 @@ const Product = () => {
   const handleChange = (e, p: number) => {
     console.log(e.target.value);
     setPage(p);
-    console.log(urlParam.limit * page);
+    console.log(urlParam2.current.limit * page);
 
-    if (product.length <= urlParam.limit * page) {
-      setUrlParam({
-        ...urlParam,
-        skip: urlParam.limit * p - urlParam.limit,
-      });
-      dispatch(fetchingProducts(urlParam));
+    if (product.length < urlParam2.current.limit * p) {
+      urlParam2.current.skip =urlParam2.current.limit* p -urlParam2.current.limit
+       console.log(urlParam2);
+
+      // setUrlParam({
+      //   ...urlParam,
+      //   skip: urlParam.limit * p - urlParam.limit,
+      // });
+      dispatch(fetchingProducts(urlParam2.current));
     }
   };
   if (isLoading) return null;
@@ -76,8 +80,8 @@ const Product = () => {
         {product &&
           product
             .slice(
-              page * urlParam.limit - urlParam.limit,
-              page * urlParam.limit
+              page * urlParam2.current.limit - urlParam2.current.limit,
+              page * urlParam2.current.limit
             )
             .map((value: PRODUCT) => {
               return (
