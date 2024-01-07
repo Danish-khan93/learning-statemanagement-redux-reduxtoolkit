@@ -3,7 +3,9 @@
 // import Product from "./component/Product";
 // import { Route, Routes } from "react-router-dom";
 // import Login from "./component/Login";
-import MainTabs from "./component/multipageForm/MainTabs";
+// import MainTabs from "./component/multipageForm/MainTabs";
+
+
 // import SampleForm from "./component/multipageForm/formpages/SampleForm";
 const App = () => {
   return (
@@ -15,8 +17,9 @@ const App = () => {
       {/* <Routes>
         <Route path="/" element={<Login />} />
       </Routes> */}
-      <MainTabs />
+      {/* <MainTabs /> */}
       {/* <SampleForm/> */}
+  
       
     </>
   );
