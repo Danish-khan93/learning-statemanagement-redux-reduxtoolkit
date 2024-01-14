@@ -5,13 +5,16 @@ import {
   addTodos,
   removeTodo,
   removeTodos,
+  updateTodo,
 } from "../../redux/createentityadeptor/todoSlice";
 import { nanoid } from "@reduxjs/toolkit/react";
 import { TextField, Button, Typography, Checkbox } from "@mui/material";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import EditIcon from "@mui/icons-material/Edit";
 const AddTodo = () => {
   const dispatch = useDispatch();
   const [text, setText] = useState<string>("");
+  const UpdateRef = useRef<any>(null);
   const allTodo = useSelector(todoSelectors.selectEntities);
   // console.log(allTodo);
   const AllTodoIds = useSelector(todoSelectors.selectIds);
@@ -49,7 +52,7 @@ const AddTodo = () => {
   return (
     <div className="flex flex-col items-center">
       <Typography variant="h2"> Redux CreateEntityAdaptor</Typography>
-      <TextField onChange={changeHandler} value={text} />
+      <TextField inputRef={UpdateRef} onChange={changeHandler} value={text} />
       <Button onClick={clickHandler}>Add</Button>
       {/* list */}
 
@@ -75,6 +78,18 @@ const AddTodo = () => {
                 }}
               >
                 x
+              </Button>
+              <Button
+                onClick={() => {
+                  UpdateRef?.current?.focus();
+                  dispatch(
+                    // @ts-ignore
+                    updateTodo({ id: item.id, todo: text })
+                  );
+                  setText("");
+                }}
+              >
+                <EditIcon />
               </Button>
             </div>
           );

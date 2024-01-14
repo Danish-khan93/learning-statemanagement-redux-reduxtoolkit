@@ -26,6 +26,7 @@ const todosSlice = createSlice({
         return value.id !== action.payload;
       });
     },
+    
   },
 });
 

@@ -13,8 +13,9 @@ const todoSlice = createSlice({
     addTodos:todoAdaptor.addMany,
     removeTodo: todoAdaptor.removeOne,
     removeTodos: todoAdaptor.removeAll,
+    updateTodo: todoAdaptor.setOne
   },
 });
 
-export const {addTodo,addTodos,removeTodo,removeTodos} = todoSlice.actions;
+export const {addTodo,addTodos,removeTodo,removeTodos,updateTodo} = todoSlice.actions;
 export default todoSlice.reducer;
