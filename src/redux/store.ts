@@ -2,14 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 // import counterReducer from "./feature/counterSlice";
 // import todosReducer from "./feature/todosSlice";
 // import ProdutReducer from "../redux/feature/productSLice"
-import authReducer from "./feature/authSlice"
+// import authReducer from "./feature/authSlice"
+import todoReducer from "./createentityadeptor/todoSlice";
 export const store = configureStore({
   reducer: {
     // counter: counterReducer,
     // todo: todosReducer,
     // products: ProdutReducer
-    auth:authReducer
-
+    // auth:authReducer
+    todo: todoReducer,
   },
 });
 

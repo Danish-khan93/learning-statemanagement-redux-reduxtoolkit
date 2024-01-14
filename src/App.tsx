@@ -5,6 +5,8 @@
 // import Login from "./component/Login";
 // import MainTabs from "./component/multipageForm/MainTabs";
 
+import AddTodo from "./component/createAdaptor/AddTodo";
+
 
 // import SampleForm from "./component/multipageForm/formpages/SampleForm";
 const App = () => {
@@ -19,6 +21,7 @@ const App = () => {
       </Routes> */}
       {/* <MainTabs /> */}
       {/* <SampleForm/> */}
+      <AddTodo/>
   
       
     </>
