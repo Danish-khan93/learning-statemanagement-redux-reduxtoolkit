@@ -34,18 +34,24 @@ const App = () => {
       dispatch(productgetting(urlParam.current));
     }
   }, []);
-  const pageChange = (e, value: number) => {
-    if (totalProduct.length < urlParam.current.limit * value) {
-      urlParam.current.skip = urlParam.current.skip * urlParam.current.limit;
+  const pageChange = (e:any, value: number) => {
+    console.log(e);
+    
+    // if (totalProduct.length < urlParam.current.limit * value) {
+      urlParam.current.skip = value * urlParam.current.limit-urlParam.current.limit;
       dispatch(productgetting(urlParam.current));
       setPage(value);
-    }
+    // }
   };
   return (
     <>
       <h1 className="text-center font-bold text-[32px]">REDUX</h1>
       <div className="flex justify-center">
         <Pagination count={10} page={page} onChange={pageChange} />
+
+        <div>
+          <h1>{}</h1>
+        </div>
       </div>
       {/* <Counter />; */}
       {/* <Todo /> */}
