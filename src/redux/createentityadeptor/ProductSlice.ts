@@ -26,6 +26,8 @@ export const productgetting = createAsyncThunk(
 const productAdapter = createEntityAdapter({
   // @ts-ignore
   selectId: (product) => product.id,
+  sortComparer: (a, b) => a.id - b.id,
+
 });
 
 const productSlice = createSlice({
@@ -42,7 +44,7 @@ const productSlice = createSlice({
     builder.addCase(productgetting.fulfilled, (state, action) => {
       state.isloading = false;
       // @ts-ignore
-      productAdapter.addMany(state, action.payload);
+      productAdapter.setMany(state, action.payload);
       productAdapter.updateMany(state, action.payload);
     });
     builder.addCase(productgetting.rejected, (state) => {
