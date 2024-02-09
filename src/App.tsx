@@ -14,7 +14,8 @@
 //   productgetting,
 //   productSelectors,
 // } from "./redux/createentityadeptor/ProductSlice";
-import Comment from "./component/Comment";
+// import Comment from "./component/Comment";
+import MultiDropDown from "./component/MultiDropDown";
 const App = () => {
   // const dispatch = useDispatch<AppDispatch>();
   // const urlParam = useRef({ limit: 10, skip: 0 });
@@ -48,8 +49,8 @@ const App = () => {
     <>
 
       <h1 className="text-center font-bold text-[32px]">REDUX</h1>
-      <Comment/>
-     
+      {/* <Comment/> */}
+     <MultiDropDown/>
     </>
   );
 };

@@ -19,7 +19,7 @@ const Comment = () => {
   console.log(total, "total");
   console.log(allComments, "allComments");
   console.log(CommentsById, "CommentsByIds");
-
+ 
   useEffect(() => {
     dispatch(commentFetch());
   }, []);
